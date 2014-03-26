@@ -11,12 +11,12 @@
 
 // Modules
 var express = require('express');
+var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
 
 var app = express();
 
-// Express Settings
 app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'jade');
@@ -32,12 +32,9 @@ app.use(express.static(path.join(__dirname, '/public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-var filepath = path.join(__dirname, '/proverbs.json');
-var proverbs = JSON.parse(fs.readFileSync(filepath));
 
-function randomProverb() {
-  return proverbs.sort(function() {return 0.5 - Math.random()})[1];
-};
+var filepath = path.join(__dirname, 'proverbs.json');
+var proverbs = JSON.parse(fs.readFileSync(filepath));
 
 function health() {
   return {
@@ -49,14 +46,14 @@ function health() {
 
 app.get('/', function(req, res) {
   res.render('index', {
-    episode: randomProverb().episode,
-    name: randomProverb().title,
-    proverb: randomProverb().proverb
+    episode: _.sample(proverbs).episode,
+    name: _.sample(proverbs).title,
+    proverb: _.sample(proverbs).proverb
   });
 });
 
 app.get('/json', function(req, res) {
-  res.json(200, randomProverb());
+  res.json(200, _.sample(proverbs));
 });
 
 app.get('/json/all', function(req, res) {
