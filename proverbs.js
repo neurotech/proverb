@@ -2,9 +2,9 @@
 // TODO
 // =========
 
-// - Improve health function
 // - Jade polish
 // - SASS polish
+// - Add prepositions dictionary
 
 
 // Modules
@@ -51,17 +51,11 @@ var verbs = JSON.parse(fs.readFileSync(verbPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
 
-function health() {
-  return {
-    pid: process.pid,
-    memory: process.memoryUsage(),
-    uptime: process.uptime()
-  };
-};
-
 app.get('/', function(req, res) {
   var shuffled = _.sample(proverbs);
+
   res.render('index', {
+    total: proverbs.length,
     episode: shuffled.episode,
     name: shuffled.title,
     proverb: shuffled.proverb,
@@ -78,10 +72,6 @@ app.get('/json', function(req, res) {
 
 app.get('/json/all', function(req, res) {
   res.json(200, proverbs);
-});
-
-app.get('/health', function(req, res){
-  res.json(200, health());
 });
 
 app.listen(app.get('port'), function (err, status) {
