@@ -23,7 +23,6 @@ app.set('port', process.env.PORT || 4242);
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'jade');
 app.enable('trust proxy');
-app.use(express.favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
