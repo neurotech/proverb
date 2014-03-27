@@ -54,7 +54,7 @@ var prepositions = JSON.parse(fs.readFileSync(prepPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
 
-app.get('/', function(req, res) {
+app.get('/proverb', function(req, res) {
   var shuffled = _.sample(proverbs);
 
   res.render('index', {
@@ -70,11 +70,11 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/json', function(req, res) {
+app.get('/proverb/json', function(req, res) {
   res.json(200, _.sample(proverbs));
 });
 
-app.get('/json/all', function(req, res) {
+app.get('/proverb/json/all', function(req, res) {
   res.json(200, proverbs);
 });
 
