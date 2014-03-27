@@ -3,4 +3,7 @@ extends layout
 block content
   h1 #{proverb}
   p
-    em This proverb #{verb} to your #{adjective} #{noun} by Welcome to Night Vale - episode #{episode} entitled: '#{name}'.
+    em
+      | This proverb has been #{adverb} #{verb} to your #{adjective} #{noun} by 
+      a(href="http://commonplacebooks.com/" target="_blank") Welcome to Night Vale
+      |  episode number #{episode} &#8211; '#{name}'

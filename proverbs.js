@@ -39,12 +39,14 @@ if ('development' == app.get('env')) {
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
+var adverbPath = path.join(__dirname, 'data/adverbs.json');
 var verbPath = path.join(__dirname, 'data/verbs.json');
 var adjectivePath = path.join(__dirname, 'data/adjectives.json');
 var nounPath = path.join(__dirname, 'data/nouns.json');
 
 // Parse data sources
 var proverbs = JSON.parse(fs.readFileSync(proverbPath));
+var adverbs = JSON.parse(fs.readFileSync(adverbPath));
 var verbs = JSON.parse(fs.readFileSync(verbPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
@@ -62,6 +64,7 @@ app.get('/', function(req, res) {
     episode: _.sample(proverbs).episode,
     name: _.sample(proverbs).title,
     proverb: _.sample(proverbs).proverb,
+    adverb: _.sample(adverbs),
     verb: _.sample(verbs),
     adjective: _.sample(adjectives),
     noun: _.sample(nouns)
