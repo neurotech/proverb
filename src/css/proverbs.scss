@@ -9,8 +9,8 @@ body {
   font-size: 14px/21px;
   -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
   -webkit-text-size-adjust: 100%;
-  background-color: $shade;
-  color: $twinkling;
+  background-color: $bg;
+  color: $core;
 }
 
 h1 {
@@ -18,15 +18,15 @@ h1 {
 }
 
 strong {
-  color: $taunt;
+  color: $link;
   font-weight: bold;
 }
 
 a {
-  color: $taunt;
+  color: $link;
   font-weight: bold;
   &:hover {
-    color: lighten($taunt, 5%);
+    color: lighten($link, 5%);
   }
 }
 
@@ -69,11 +69,11 @@ a {
 /* Mozilla based browsers */
 ::-moz-selection {
   background-color: $source;
-  color: $shade;
+  color: $bg;
 }
 
 /* Works in Safari */
 ::selection {
   background-color: $source;
-  color: $shade;
+  color: $bg;
 }

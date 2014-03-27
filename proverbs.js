@@ -6,7 +6,6 @@
 // - SASS polish
 // - Add prepositions dictionary
 // - Get bower working in the right dirs with bower.json etc
-// - Rename palette items to saner names
 
 // Modules
 var express = require('express');
