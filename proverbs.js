@@ -31,7 +31,7 @@ app.use(sass.middleware({
   debug: true,
   outputStyle: 'compressed'
 }));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Development only
 if ('development' == app.get('env')) {
@@ -70,11 +70,11 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/proverb/json', function(req, res) {
+app.get('//json', function(req, res) {
   res.json(200, _.sample(proverbs));
 });
 
-app.get('/proverb/json/all', function(req, res) {
+app.get('//json/all', function(req, res) {
   res.json(200, proverbs);
 });
 
