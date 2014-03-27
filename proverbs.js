@@ -31,7 +31,8 @@ app.use(sass.middleware({
   debug: true,
   outputStyle: 'compressed'
 }));
-app.use(express.static(path.join(__dirname, '/public')));
+//app.use(express.static(path.join(__dirname, '/public')));
+app.use('/proverb', express.static(__dirname, '/public'));
 
 // Development only
 if ('development' == app.get('env')) {
@@ -54,7 +55,7 @@ var prepositions = JSON.parse(fs.readFileSync(prepPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
 
-app.get('/proverb', function(req, res) {
+app.get('/', function(req, res) {
   var shuffled = _.sample(proverbs);
 
   res.render('index', {
