@@ -3,19 +3,18 @@ extends layout
 block content
   .container
     h1.proverb #{proverb}
-    p.source
-      | This proverb has been #{adverb} #{verb} to your #{adjective} #{noun} by 
-      a(href="http://commonplacebooks.com/" target="_blank" title="Welcome to Night Vale by Commonplace Books is a twice-monthly podcast in the style of community updates for the small desert town of Night Vale, featuring local weather, news, announcements from the Sheriff's Secret Police, mysterious lights in the night sky, dark hooded figures with unknowable powers, and cultural events.") Welcome to Night Vale
-      |.
-    
-    p.episode Episode #{episode} &#8211; '#{name}'
+    p.episode Episode #{episode} &#8211; &#8216;#{name}&#8217;
 
   .footer
-    p.text-center
+    p
+      | This proverb has been #{adverb} #{verb} #{preposition} your #{adjective} #{noun} by 
+      a(href="http://commonplacebooks.com/" target="_blank" title="Welcome to Night Vale by Commonplace Books is a twice-monthly podcast in the style of community updates for the small desert town of Night Vale, featuring local weather, news, announcements from the Sheriff's Secret Police, mysterious lights in the night sky, dark hooded figures with unknowable powers, and cultural events.") Welcome to Night Vale
+      |.
+    p.counter
       | There are 
       strong#count 0
-      |  total proverbs to be found in Night Vale.
+      |  total proverbs to be found.
 
   script.
-    var counter = new countUp("count", 0, #{total}, 0, 3, options);
+    var counter = new countUp("count", 0, #{total}, 0, 6, options);
     counter.start();

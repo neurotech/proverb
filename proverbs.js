@@ -41,6 +41,7 @@ if ('development' == app.get('env')) {
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
 var adverbPath = path.join(__dirname, 'data/adverbs.json');
 var verbPath = path.join(__dirname, 'data/verbs.json');
+var prepPath = path.join(__dirname, 'data/prepositions.json');
 var adjectivePath = path.join(__dirname, 'data/adjectives.json');
 var nounPath = path.join(__dirname, 'data/nouns.json');
 
@@ -48,6 +49,7 @@ var nounPath = path.join(__dirname, 'data/nouns.json');
 var proverbs = JSON.parse(fs.readFileSync(proverbPath));
 var adverbs = JSON.parse(fs.readFileSync(adverbPath));
 var verbs = JSON.parse(fs.readFileSync(verbPath));
+var prepositions = JSON.parse(fs.readFileSync(prepPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
 
@@ -61,6 +63,7 @@ app.get('/', function(req, res) {
     proverb: shuffled.proverb,
     adverb: _.sample(adverbs),
     verb: _.sample(verbs),
+    preposition: _.sample(prepositions),
     adjective: _.sample(adjectives),
     noun: _.sample(nouns)
   });
