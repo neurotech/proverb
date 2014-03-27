@@ -2,11 +2,9 @@
 // TODO
 // =========
 
-// - Create array of past-tense verbs, adjectives, nouns to be randomly grouped for attribution line.
-//   - i.e. 'This proverb {verb} to your {adjective} {noun} by {episode} - '{name}'.'
 // - Improve health function
-// - Jade template polish
-// - Stylus files polish
+// - Jade polish
+// - SASS polish
 
 
 // Modules
