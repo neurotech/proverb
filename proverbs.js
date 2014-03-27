@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'jade');
 app.enable('trust proxy');
 app.use(express.favicon(path.join(__dirname, '/public/favicon.ico')));
-app.use(express.logger('dev'));
+app.use(express.logger({format: ':req[X-Forwarded-For] - - [:date] ":method :url HTTP/:http-version" :status :res[content-length] - :response-time ms', stream: access_logfile }));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
@@ -31,8 +31,7 @@ app.use(sass.middleware({
   debug: true,
   outputStyle: 'compressed'
 }));
-//app.use(express.static(path.join(__dirname, '/public')));
-app.use('/proverb', express.static(__dirname, '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // Development only
 if ('development' == app.get('env')) {
