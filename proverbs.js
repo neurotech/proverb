@@ -11,6 +11,7 @@
 
 // Modules
 var express = require('express');
+var sass = require('node-sass');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
@@ -25,7 +26,12 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
-app.use(require('stylus').middleware(path.join(__dirname, '/src/stylesheets')));
+app.use(sass.middleware({
+  src: path.join(__dirname, '/src'),
+  dest: path.join(__dirname, '/public'),
+  debug: true,
+  outputStyle: 'compressed'
+}));
 app.use(express.static(path.join(__dirname, '/public')));
 
 // Development only
@@ -33,8 +39,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var filepath = path.join(__dirname, 'proverbs.json');
-var proverbs = JSON.parse(fs.readFileSync(filepath));
+// Set data sources
+var proverbPath = path.join(__dirname, 'data/proverbs.json');
+var verbPath = path.join(__dirname, 'data/verbs.json');
+var adjectivePath = path.join(__dirname, 'data/adjectives.json');
+var nounPath = path.join(__dirname, 'data/nouns.json');
+
+// Parse data sources
+var proverbs = JSON.parse(fs.readFileSync(proverbPath));
+var verbs = JSON.parse(fs.readFileSync(verbPath));
+var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
+var nouns = JSON.parse(fs.readFileSync(nounPath));
 
 function health() {
   return {
@@ -48,7 +63,10 @@ app.get('/', function(req, res) {
   res.render('index', {
     episode: _.sample(proverbs).episode,
     name: _.sample(proverbs).title,
-    proverb: _.sample(proverbs).proverb
+    proverb: _.sample(proverbs).proverb,
+    verb: _.sample(verbs),
+    adjective: _.sample(adjectives),
+    noun: _.sample(nouns)
   });
 });
 
