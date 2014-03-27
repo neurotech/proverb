@@ -5,6 +5,7 @@
 // - Jade polish
 // - SASS polish
 // - Add prepositions dictionary
+// - Get bower working in the right dirs with bower.json etc
 
 
 // Modules
