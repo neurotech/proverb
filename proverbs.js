@@ -16,11 +16,14 @@ var path = require('path');
 
 var app = express();
 
+var env = process.env.NODE_ENV || 'development'
+
+app.set('env', env);
 app.set('port', process.env.PORT || 4242);
-app.set('views', path.join(__dirname, '/src/views'));
+app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'jade');
 app.enable('trust proxy');
-app.use(express.favicon(path.join(__dirname, '/public/favicon.ico')));
+app.use(express.favicon(path.join(__dirname, 'public/favicon.ico')));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -31,12 +34,13 @@ app.use(sass.middleware({
   debug: true,
   outputStyle: 'compressed'
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
 // Development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
+  app.use('/proverb', express.static(path.join(__dirname, 'public')));
 }
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
@@ -82,4 +86,5 @@ app.listen(app.get('port'), function (err, status) {
   if (err) {
     console.log(err);
   }
+  console.log('Proverbs serving in ' + env + ' mode.');
 });
