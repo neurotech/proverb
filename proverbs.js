@@ -21,7 +21,7 @@ app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'jade');
 app.enable('trust proxy');
 app.use(express.favicon(path.join(__dirname, '/public/favicon.ico')));
-app.use(express.logger({format: ':req[X-Forwarded-For] - - [:date] ":method :url HTTP/:http-version" :status :res[content-length] - :response-time ms', stream: access_logfile }));
+app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
