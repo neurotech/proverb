@@ -1,5 +1,6 @@
 [
   "borne",
+  "beamed",
   "blown",
   "brought",
   "crept",
@@ -14,6 +15,7 @@
   "sent",
   "shot",
   "slid",
+  "slung",
   "sneaked",
   "sped",
   "spilled",
@@ -25,7 +27,9 @@
   "swept",
   "swung",
   "taught",
-  "thought",
+  "teleported",
+  "transmitted",
   "thrown",
+  "uplinked",
   "woven"
 ]
