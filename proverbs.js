@@ -16,7 +16,7 @@ var path = require('path');
 
 var app = express();
 
-app.set('port', process.env.PORT || 4000);
+app.set('port', process.env.PORT || 4242);
 app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'jade');
 app.use(express.favicon(path.join(__dirname, '/public/favicon.ico')));
@@ -60,10 +60,11 @@ function health() {
 };
 
 app.get('/', function(req, res) {
+  var shuffled = _.sample(proverbs);
   res.render('index', {
-    episode: _.sample(proverbs).episode,
-    name: _.sample(proverbs).title,
-    proverb: _.sample(proverbs).proverb,
+    episode: shuffled.episode,
+    name: shuffled.title,
+    proverb: shuffled.proverb,
     adverb: _.sample(adverbs),
     verb: _.sample(verbs),
     adjective: _.sample(adjectives),
