@@ -1,7 +1,17 @@
 doctype html
 html
   head
-    title= title
+    title Today's proverb:
     link(rel='stylesheet', href='/css/proverbs.css')
+    script(src='/js/countUp.min.js')
+    script.
+      // countUp options
+      var options = {
+        useEasing : false, 
+        useGrouping : false, 
+        separator : ',', 
+        decimal : '.' 
+      }
+
   body
     block content
