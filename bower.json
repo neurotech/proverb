@@ -1,0 +1,21 @@
+{
+  "name": "proverb",
+  "version": "0.0.1",
+  "homepage": "https://github.com/neurotech/proverb",
+  "authors": [
+    "Tim Douglas <neurotech@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "src",
+    "data"
+  ],
+  "dependencies": {
+    "countUp.js": "~1.1.0"
+  }
+}
