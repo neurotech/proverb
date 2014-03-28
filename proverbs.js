@@ -26,8 +26,6 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//console.log(_.sample(config.dictionary.proverbs));
-
 // Routes
 app.get('/', function(req, res) {
   var shuffled = _.sample(config.dictionary.proverbs);
