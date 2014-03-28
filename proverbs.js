@@ -10,7 +10,7 @@ var env = process.env.NODE_ENV || 'development'
 
 // Express configuration
 app.set('env', env);
-app.set('port', process.env.PORT || 4242);
+app.set('port', process.env.PORT || config.server.port);
 app.enable('trust proxy');
 app.enable('strict routing');
 app.set('views', path.join(__dirname, 'src/views'));
