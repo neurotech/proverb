@@ -5,7 +5,6 @@ var fs = require('fs');
 var path = require('path');
 
 var app = express();
-
 var env = process.env.NODE_ENV || 'development'
 
 // Express configuration
