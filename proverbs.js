@@ -77,11 +77,11 @@ app.get('/proverb/', function(req, res) {
   });
 });
 
-app.get('//json', function(req, res) {
+app.get('/proverb/json', function(req, res) {
   res.json(200, _.sample(proverbs));
 });
 
-app.get('//json/all', function(req, res) {
+app.get('/proverb/json/all', function(req, res) {
   res.json(200, proverbs);
 });
 
