@@ -1,6 +1,5 @@
 // Modules
 var express = require('express');
-var sass = require('node-sass');
 var _ = require('underscore');
 var fs = require('fs');
 var path = require('path');
