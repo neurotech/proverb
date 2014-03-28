@@ -1,12 +1,3 @@
-// =========
-// TODO
-// =========
-
-// - Jade polish
-// - SASS polish
-// - Add prepositions dictionary
-// - Get bower working in the right dirs with bower.json etc
-
 // Modules
 var express = require('express');
 var sass = require('node-sass');
@@ -18,34 +9,23 @@ var app = express();
 
 var env = process.env.NODE_ENV || 'development'
 
+// Express configuration
 app.set('env', env);
 app.set('port', process.env.PORT || 4242);
+app.enable('trust proxy');
+app.enable('strict routing');
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'jade');
-app.enable('trust proxy');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 
-/* Disabling SASS middleware for now.
-app.use(sass.middleware({
-  src: path.join(__dirname, '/src'),
-  dest: path.join(__dirname, '/public'),
-  debug: true,
-  outputStyle: 'compressed'
-}));
-*/
-
 // Development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
-  app.disable('strict routing');
-  app.use('/proverb', express.static(path.join(__dirname, 'public')));
 }
-app.enable('strict routing');
-app.all('/proverb', function(req, res) { res.redirect('/proverb/'); });
-app.use('/proverb/', express.static(path.join(__dirname, 'public')));
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
@@ -63,7 +43,8 @@ var prepositions = JSON.parse(fs.readFileSync(prepPath));
 var adjectives = JSON.parse(fs.readFileSync(adjectivePath));
 var nouns = JSON.parse(fs.readFileSync(nounPath));
 
-app.get('/proverb/', function(req, res) {
+// Routes
+app.get('/', function(req, res) {
   var shuffled = _.sample(proverbs);
 
   res.render('index', {
@@ -79,11 +60,11 @@ app.get('/proverb/', function(req, res) {
   });
 });
 
-app.get('/proverb/json', function(req, res) {
+app.get('/json', function(req, res) {
   res.json(200, _.sample(proverbs));
 });
 
-app.get('/proverb/json/all', function(req, res) {
+app.get('/json/all', function(req, res) {
   res.json(200, proverbs);
 });
 
