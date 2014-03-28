@@ -42,8 +42,8 @@ if ('development' == app.get('env')) {
 }
 app.enable('strict routing');
 app.all('/proverb', function(req, res) { res.redirect('/proverb/'); });
-app.use('/proverb/',express.static(__dirname+'/public'));
-//app.use(express.static(path.join(__dirname, 'public')));
+//app.use('/proverb/',express.static(__dirname+'/public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
