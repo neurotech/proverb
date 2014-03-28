@@ -27,12 +27,15 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+
+/* Disabling SASS middleware for now.
 app.use(sass.middleware({
   src: path.join(__dirname, '/src'),
   dest: path.join(__dirname, '/public'),
   debug: true,
   outputStyle: 'compressed'
 }));
+*/
 
 // Development only
 if ('development' == app.get('env')) {
@@ -43,7 +46,6 @@ if ('development' == app.get('env')) {
 app.enable('strict routing');
 app.all('/proverb', function(req, res) { res.redirect('/proverb/'); });
 app.use('/proverb/', express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, 'public')));
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
