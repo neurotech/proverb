@@ -37,9 +37,13 @@ app.use(sass.middleware({
 // Development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
+  app.disable('strict routing');
   app.use('/proverb', express.static(path.join(__dirname, 'public')));
 }
-app.use(express.static(path.join(__dirname, 'public')));
+app.enable('strict routing');
+app.all('/proverb', function(req, res) { res.redirect('/proverb/'); });
+app.use('/proverb/',express.static(__dirname+'/public'));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 // Set data sources
 var proverbPath = path.join(__dirname, 'data/proverbs.json');
