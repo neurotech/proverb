@@ -6,7 +6,7 @@ var path = require('path');
 var config = require('./src/config.json');
 
 var app = express();
-var env = process.env.NODE_ENV || 'development'
+var env = process.env.NODE_ENV || 'development';
 
 // Express configuration
 app.set('env', env);
