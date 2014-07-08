@@ -8,6 +8,19 @@ var config = require('./src/config.json');
 var app = express();
 var env = process.env.NODE_ENV || 'development';
 
+var allowCrossDomain = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  if ('OPTIONS' == req.method) {
+      res.send(200);
+  }
+  else {
+      next();
+  }
+};
+
 // Express configuration
 app.set('env', env);
 app.set('port', process.env.PORT || config.server.port);
@@ -15,6 +28,7 @@ app.enable('trust proxy');
 app.enable('strict routing');
 app.set('views', path.join(__dirname, 'src/views'));
 app.set('view engine', 'jade');
+app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -22,7 +36,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 
 // Development only
-if ('development' == app.get('env')) {
+if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
