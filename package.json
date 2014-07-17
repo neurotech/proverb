@@ -10,7 +10,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "forever start proverbs.js --minUptime 1000 --spinSleepTime 3000"
   },
   "repository": {
     "type": "git",
