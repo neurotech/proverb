@@ -11,7 +11,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "forever start proverbs.js --minUptime 1000 --spinSleepTime 3000"
+    "serve": "forever start --minUptime 1000 --spinSleepTime 3000 proverbs.js"
   },
   "repository": {
     "type": "git",
