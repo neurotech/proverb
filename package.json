@@ -4,14 +4,17 @@
   "description": "A simple web application for consuming 'Welcome to Night Vale' proverbs.",
   "main": "proverbs.js",
   "dependencies": {
-    "express": "~3.5.0",
-    "jade": "~1.3.0",
-    "underscore": "^1.6.0"
+    "express": "~4.16.0",
+    "jade": "~1.8.0",
+    "underscore": "^1.6.0",
+    "snyk": "^1.69.7"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "forever start --minUptime 1000 --spinSleepTime 3000 proverbs.js"
+    "serve": "forever start --minUptime 1000 --spinSleepTime 3000 proverbs.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -30,5 +33,6 @@
   "bugs": {
     "url": "https://github.com/neurotech/proverb/issues"
   },
-  "homepage": "http://hovercastle.io/proverb"
+  "homepage": "http://hovercastle.io/proverb",
+  "snyk": true
 }
